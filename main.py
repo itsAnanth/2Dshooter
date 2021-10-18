@@ -42,7 +42,9 @@ crouched = False
 
 
 def draw_background():
+    rect = pygame.Rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 2)
     screen.fill(BG)
+    pygame.draw.rect(screen, (137, 207, 240), rect)
 
 
 class Player(pygame.sprite.Sprite):
@@ -137,7 +139,7 @@ class Player(pygame.sprite.Sprite):
         )
 
 
-player = Player('player', 200, 200, 3, 5)
+player = Player('player', 200, SCREEN_HEIGHT / 2, 3, 5)
 # enemy = Player(player.x + 200, 200, 3)
 
 
