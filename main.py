@@ -45,6 +45,7 @@ def draw_background():
     rect = pygame.Rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 2)
     screen.fill(BG)
     pygame.draw.rect(screen, (137, 207, 240), rect)
+    pygame.draw.line(screen, (107, 105, 99), (0, SCREEN_HEIGHT / 2), (SCREEN_WIDTH, SCREEN_HEIGHT / 2))
 
 
 class Player(pygame.sprite.Sprite):
