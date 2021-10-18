@@ -9,12 +9,12 @@ import os
 # value = math.floor(240 / 4) - 12
 # val = value
 # for i in range(5):
-#     img = Image.open('images\TeamGunner_By_SecretHideout_060519\CHARACTER_SPRITES\Green\Gunner_Green_Run.png')
+#     img = Image.open('images\TeamGunner_By_SecretHideout_060519\CHARACTER_SPRITES\Green\Gunner_Green_Crouch.png')
 #     # img.show()
 #     # cropped = img.crop((x, 0, val, 45))
 #     cropped = img.crop((x, 0, val, 45))
 #     # cropped.show()
-#     cropped.save(f'Assets/player/Run/{i}.png')
+#     cropped.save(f'Assets/player/Crouch/{i}.png')
 #     x += value
 #     val += value
 
@@ -38,6 +38,7 @@ pygame.display.set_caption('2D Shooter')
 
 moving_left = False
 moving_right = False
+crouched = False
 
 
 def draw_background():
@@ -62,7 +63,7 @@ class Player(pygame.sprite.Sprite):
         
         #sprite action [idle, run] etc
         self.action = 0 #initially idle
-        animation_types = ['Idle', 'Run']
+        animation_types = ['Idle', 'Run', 'Crouch']
         
         for animation in animation_types:
             
@@ -162,6 +163,8 @@ while run:
         # else:
         if moving_left or moving_right:
             player.update_action(1)
+        elif crouched:
+            player.update_action(2)
         else:
             player.update_action(0)#0: idle
         player.move(moving_left, moving_right)
@@ -178,12 +181,16 @@ while run:
                 moving_right = True
             if event.key == pygame.K_ESCAPE:
                 run = False
+            if event.key == pygame.K_s:
+                crouched = True
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_a:
                 moving_left = False
             if event.key == pygame.K_d:
                 moving_right = False
+            if event.key == pygame.K_s:
+                crouched = False
 
     pygame.display.update()
 
